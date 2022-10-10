@@ -13,7 +13,7 @@ __meta__ = {
 }
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, 47 )
+position = Vector2( 112, 27 )
 
 [node name="Block" parent="." instance=ExtResource( 1 )]
 position = Vector2( 9, 171 )
