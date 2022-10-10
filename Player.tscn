@@ -1,11 +1,68 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://unknown-removebg-preview.png" type="Texture" id=1]
+[ext_resource path="res://Pixel Art/Wizard_Attacking_Sprite_Sheet-removebg-preview.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Pixel Art/Wizard_Walking_Sprite_Sheet-removebg-preview.png" type="Texture" id=3]
+[ext_resource path="res://Weapon.gd" type="Script" id=4]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 216, 271 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 216, 0, 216, 271 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 432, 0, 216, 271 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 648, 0, 216, 271 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 216, 270 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 216, 269 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 216, 0, 216, 269 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 432, 0, 216, 269 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 648, 0, 216, 269 )
+
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "Healing",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -14,18 +71,34 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8.5, 13.7448 )
 
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 4.43703, 6.69333 )
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.156863, 0.156863 )
-frames = SubResource( 1 )
+position = Vector2( 1, -0.245538 )
+scale = Vector2( 0.0856481, 0.102264 )
+frames = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, -0.255233 )
 shape = SubResource( 2 )
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
-[node name="Position2D" type="Position2D" parent="Node2D"]
+[node name="Weapon" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
+position = Vector2( 14.3595, 0.198388 )
+shape = SubResource( 17 )
+disabled = true
+
+[node name="Position2D" type="Position2D" parent="Weapon"]
 position = Vector2( 14, 0 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]
