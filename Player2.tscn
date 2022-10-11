@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://stick character/stick_attacking.png" type="Texture" id=1]
+[ext_resource path="res://stick character/stick_walking.png" type="Texture" id=2]
+[ext_resource path="res://stick character/stick_standingt.png" type="Texture" id=3]
+[ext_resource path="res://Player2.gd" type="Script" id=4]
+[ext_resource path="res://Weapon.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 240, 320 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 240, 320 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 480, 0, 240, 320 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 234, 320 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 234, 0, 234, 320 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 231, 319 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 231, 0, 231, 319 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Attacking",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8.5, 13.7448 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 4.43703, 6.69333 )
+
+[node name="Player2" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.961071, -0.183739 )
+scale = Vector2( 0.078092, 0.0869861 )
+frames = SubResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, -0.255233 )
+shape = SubResource( 10 )
+
+[node name="Weapon" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
+position = Vector2( 14.3595, 0.198388 )
+shape = SubResource( 11 )
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]
