@@ -12,10 +12,10 @@ Boss Art[]
 Code:
 Boss Ai[]
 Player Movement [x]
-Range Class[]
+Range Class[x]
 Melee Class[x]
 Utility Class[x]
-Art Style Change Menu[]
+Art Style Change Menu[x]
 
 Design:
 Map[]
