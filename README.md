@@ -1,7 +1,7 @@
 # Genre-Mashup
 
 Goal:
-A 2d sidescroller game that incorporates multiple different genre art styles into the game's mechanics. 
+A 2d sidescroller game(prototype) that incorporates multiple different genre art styles into the game's mechanics using the game engine Godot.
 
 Art:
 Pixel Art[x]
