@@ -1,29 +1,201 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=57 format=2]
 
-[ext_resource path="res://Pixel Art/Wizard_Attacking_Sprite_Sheet-removebg-preview.png" type="Texture" id=1]
+[ext_resource path="res://spritesheet_1-removebg-preview.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Pixel Art/Wizard_Walking_Sprite_Sheet-removebg-preview.png" type="Texture" id=3]
 [ext_resource path="res://Weapon.gd" type="Script" id=4]
+[ext_resource path="res://stick character/stick_walking.png" type="Texture" id=5]
+[ext_resource path="res://stick character/stick_standingt.png" type="Texture" id=6]
+[ext_resource path="res://stick character/stick_attacking.png" type="Texture" id=7]
+[ext_resource path="res://Cartoon character/walking/wizard_walking_3.png" type="Texture" id=8]
+[ext_resource path="res://Cartoon character/rangeAttack/wizard_attacking_1.png" type="Texture" id=9]
+[ext_resource path="res://Cartoon character/rangeAttack/wizard_attacking_2.png" type="Texture" id=10]
+[ext_resource path="res://stick character/stick_jumping.png" type="Texture" id=11]
+[ext_resource path="res://Cartoon character/walking/wizard_walking_2.png" type="Texture" id=12]
+[ext_resource path="res://Cartoon character/walking/wizard_walking_0.png" type="Texture" id=13]
+[ext_resource path="res://Cartoon character/rangeAttack/wizard_attacking_0.png" type="Texture" id=14]
+[ext_resource path="res://Cartoon character/jump/wizard_jumping_1.png" type="Texture" id=15]
+[ext_resource path="res://Cartoon character/walking/wizard_walking_1.png" type="Texture" id=16]
+[ext_resource path="res://Cartoon character/jump/wizard_jumping_0.png" type="Texture" id=17]
+[ext_resource path="res://Cartoon character/jump/wizard_jumping_2.png" type="Texture" id=18]
+[ext_resource path="res://Cartoon character/idle/wizard_idle_0.png" type="Texture" id=19]
+[ext_resource path="res://Cartoon character/idle/wizard_idle_1.png" type="Texture" id=20]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 300, 400 )
+
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "rangeAttack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 240, 320 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 240, 0, 240, 320 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 480, 0, 240, 320 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 234, 320 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 234, 0, 234, 320 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 235, 320 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 235, 0, 235, 320 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 470, 0, 235, 320 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 230, 320 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 230, 0, 230, 320 )
+
+[sub_resource type="SpriteFrames" id=42]
+animations = [ {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "Attacking",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=43]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 216, 271 )
+region = Rect2( 0, 0, 216, 270 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=44]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 216, 0, 216, 271 )
+region = Rect2( 216, 0, 216, 270 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=45]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 432, 0, 216, 271 )
+region = Rect2( 432, 0, 216, 270 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=46]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 648, 0, 216, 271 )
+region = Rect2( 648, 0, 216, 270 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
@@ -52,7 +224,7 @@ region = Rect2( 648, 0, 216, 269 )
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
 "name": "Healing",
 "speed": 5.0
@@ -68,9 +240,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=18]
-radius = 6.0
-height = 9.0
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 7, 13.5 )
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 4.43703, 6.69333 )
@@ -79,16 +250,32 @@ extents = Vector2( 4.43703, 6.69333 )
 collision_layer = 16
 script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="CartoonSpriteAnimation" type="AnimatedSprite" parent="."]
+position = Vector2( 0.562502, -1.25 )
+scale = Vector2( 0.07625, 0.07625 )
+frames = SubResource( 31 )
+animation = "jump"
+
+[node name="StickSpriteAnimation" type="AnimatedSprite" parent="."]
+position = Vector2( -0.499999, -1 )
+scale = Vector2( 0.0958333, 0.09375 )
+frames = SubResource( 42 )
+animation = "Attacking"
+
+[node name="PixelSpriteAnimation" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -0.245538 )
 scale = Vector2( 0.0856481, 0.102264 )
 frames = SubResource( 12 )
+animation = "Healing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 3 )
+position = Vector2( 0, 0.5 )
 shape = SubResource( 18 )
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 14, 0 )
 
 [node name="Weapon" type="Area2D" parent="."]
 script = ExtResource( 4 )
@@ -98,5 +285,7 @@ position = Vector2( 14.3595, 0.198388 )
 shape = SubResource( 17 )
 disabled = true
 
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="animation_finished" from="CartoonSpriteAnimation" to="." method="_on_CartoonSpriteAnimation_animation_finished"]
+[connection signal="animation_finished" from="StickSpriteAnimation" to="." method="_on_StickSpriteAnimation_animation_finished"]
+[connection signal="animation_finished" from="PixelSpriteAnimation" to="." method="_on_PixelSpriteAnimation_animation_finished"]
 [connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]

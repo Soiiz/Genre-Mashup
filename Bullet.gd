@@ -1,8 +1,27 @@
-extends KinematicBody2D
+extends Area2D
 
-var velocity = Vector2(0, 0)
-var speed = 300
+const SPEED = 200
+var velocity = Vector2()
+var direction = 1
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+	
+func set_projectile_direction(dir):
+	direction = dir
+	if dir == -1:
+		$Sprite.flip_h = true
 
 func _physics_process(delta):
-	var collision_info = move_and_collide(velocity.normalized() * delta * speed)
+	velocity.x = SPEED * delta * direction
+	translate(velocity)
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
 	
+func _on_PlayerProjectile_body_entered(body):
+	if "Enemy" in body.name:
+		body.dead() #kill enemy
+	queue_free()
