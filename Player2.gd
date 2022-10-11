@@ -25,11 +25,11 @@ func _physics_process(delta):
 			attacking = true
 			$Weapon/CollisionShape2D.disabled = false
 		#weapon.attack()
-	if Input.is_action_just_pressed("ui_up"):
+	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 			velocity.y = -150
 	if health <= 0:
 		queue_free()
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 	 
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "Attacking":
