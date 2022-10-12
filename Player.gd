@@ -69,18 +69,18 @@ func state(state):
 					$CartoonSpriteAnimation.play("jump")
 				else:
 					$CartoonSpriteAnimation.play("walk");
-					$CartoonSpriteAnimation.flip_h = false
-					if sign($Position2D.position.x) == -1:
-						$Position2D.position.x *= -1
+					scale.x = scale.y * 1
+					if sign($Position2D.scale.x) == -1:
+						$Position2D.scale.x *= -1
 			elif Input.is_action_pressed("ui_left") && cartoonAttacking == false:
 				velocity.x = -50
 				if is_on_floor() == false:
 					$CartoonSpriteAnimation.play("jump")
 				else:
 					$CartoonSpriteAnimation.play("walk");
-					$CartoonSpriteAnimation.flip_h = true
-					if sign($Position2D.position.x) == 1:
-						$Position2D.position.x *= -1
+					scale.x = scale.y * -1
+					if sign($Position2D.scale.x) == 1:
+						$Position2D.scale.x *= -1
 			else:
 				velocity.x = 0
 				if cartoonAttacking == false:
@@ -93,7 +93,7 @@ func state(state):
 				cartoonAttacking = true
 				$CartoonSpriteAnimation.play("rangeAttack")
 				var projectile = PROJECTILE.instance()
-				if sign($Position2D.position.x) == 1:
+				if sign($Position2D.scale.x) == 1:
 					projectile.set_projectile_direction(1) # fires projectile to right
 				else:
 					projectile.set_projectile_direction(-1) # fires to left
