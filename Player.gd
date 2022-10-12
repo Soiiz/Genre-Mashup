@@ -15,7 +15,8 @@ const GRAVITY = 35
 var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
-export (int) var health = 10
+export (int) var health = 100
+
 var state = STICK
 
 func _physics_process(delta):
@@ -132,7 +133,7 @@ func state(state):
 				if pixelAttacking == false:
 					$PixelSpriteAnimation.play("Idle")
 			if Input.is_action_pressed("ui_accept"):
-				if health < 50:
+				if health < 100:
 					$PixelSpriteAnimation.play("Healing")
 					pixelAttacking = true
 					$Weapon/CollisionShape2D.disabled = true
@@ -152,7 +153,7 @@ func _on_StickSpriteAnimation_animation_finished():
 func _on_PixelSpriteAnimation_animation_finished():
 	if $PixelSpriteAnimation.animation == "Healing":
 		$Weapon/CollisionShape2D.disabled = true
-		health += 10
+		health += 5
 		print(str(health))
 		print(str("heal"))
 	pixelAttacking = false
