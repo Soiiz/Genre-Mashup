@@ -21,7 +21,18 @@ func _physics_process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 	
-func _on_PlayerProjectile_body_entered(body):
-	if "Enemy" in body.name:
-		body.dead() #kill enemy
+#func _on_PlayerProjectile_body_entered(body):
+#	if body == "Enemy":
+#		body.dead() #kill enemy
+#	queue_free()
+#
+#func _on_Weapon_body_entered(body: Node) -> void:
+#	if body.has_method("handle_hit"):
+#		body.handle_hit()
+
+
+
+func _on_Bullet_body_entered(body):
+	if body.has_method("ranged_hit"):
+		body.ranged_hit()
 	queue_free()

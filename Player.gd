@@ -15,7 +15,8 @@ const GRAVITY = 35
 var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
-export (int) var health = 10
+export (int) var health = 100
+
 var state = STICK
 
 func _physics_process(delta):
@@ -69,18 +70,18 @@ func state(state):
 					$CartoonSpriteAnimation.play("jump")
 				else:
 					$CartoonSpriteAnimation.play("walk");
-					$CartoonSpriteAnimation.flip_h = false
-					if sign($Position2D.position.x) == -1:
-						$Position2D.position.x *= -1
+					scale.x = scale.y * 1
+					if sign($Position2D.scale.x) == -1:
+						$Position2D.scale.x *= -1
 			elif Input.is_action_pressed("ui_left") && cartoonAttacking == false:
 				velocity.x = -50
 				if is_on_floor() == false:
 					$CartoonSpriteAnimation.play("jump")
 				else:
 					$CartoonSpriteAnimation.play("walk");
-					$CartoonSpriteAnimation.flip_h = true
-					if sign($Position2D.position.x) == 1:
-						$Position2D.position.x *= -1
+					scale.x = scale.y * -1
+					if sign($Position2D.scale.x) == 1:
+						$Position2D.scale.x *= -1
 			else:
 				velocity.x = 0
 				if cartoonAttacking == false:
@@ -93,7 +94,7 @@ func state(state):
 				cartoonAttacking = true
 				$CartoonSpriteAnimation.play("rangeAttack")
 				var projectile = PROJECTILE.instance()
-				if sign($Position2D.position.x) == 1:
+				if sign($Position2D.scale.x) == 1:
 					projectile.set_projectile_direction(1) # fires projectile to right
 				else:
 					projectile.set_projectile_direction(-1) # fires to left
@@ -132,7 +133,7 @@ func state(state):
 				if pixelAttacking == false:
 					$PixelSpriteAnimation.play("Idle")
 			if Input.is_action_pressed("ui_accept"):
-				if health < 50:
+				if health < 100:
 					$PixelSpriteAnimation.play("Healing")
 					pixelAttacking = true
 					$Weapon/CollisionShape2D.disabled = true
@@ -152,7 +153,7 @@ func _on_StickSpriteAnimation_animation_finished():
 func _on_PixelSpriteAnimation_animation_finished():
 	if $PixelSpriteAnimation.animation == "Healing":
 		$Weapon/CollisionShape2D.disabled = true
-		health += 10
+		health += 5
 		print(str(health))
 		print(str("heal"))
 	pixelAttacking = false
