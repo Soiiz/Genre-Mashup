@@ -7,10 +7,11 @@ Art:
 Pixel Art[x]
 Cartoon Art[x]
 Stick Art[x]
-Boss Art[]
+Boss Art[x]
 
 Code:
 Boss Ai[]
+UI/HUD []
 Player Movement [x]
 Range Class[x]
 Melee Class[x]
