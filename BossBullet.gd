@@ -22,3 +22,7 @@ func set_projectile_direction(dir):
 	if dir == -1:
 		$Sprite.flip_h = true
 
+func _on_BossBullet_body_entered(body):
+	if body.has_method("boss_ranged_hit"):
+		body.boss_ranged_hit()
+	queue_free()

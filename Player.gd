@@ -166,3 +166,7 @@ func _on_CartoonSpriteAnimation_animation_finished():
 func boss_melee_hit():
 	health -= 20
 	print(health)
+
+func boss_ranged_hit():
+	health -= 30
+	print(health)

@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 #TODO:
-# flip hitbox
 # add ranged damage
 # healthbar
 
@@ -51,7 +50,6 @@ func _physics_process(delta):
 					MELEE:
 						$BossAnim.play("melee")
 					RANGE:
-						print("plays range")
 						$BossAnim.play("ranged")
 		CHASE:
 			if timer.time_left > 0:
@@ -68,7 +66,11 @@ func _physics_process(delta):
 					velocity = velocity.move_toward(Vector2.ZERO, 50 * delta)
 			else:
 				state = IDLE
-			$BossAnim.flip_h = velocity.x >= 0 # flips sprite depending on velocity which depends on player location
+			#$BossAnim.flip_h = velocity.x >= 0 # flips sprite depending on velocity which depends on player location
+			if velocity.x >= 0:
+				scale.x = scale.y * -1
+			else:
+				scale.x = scale.y * 1
 			
 	velocity.y += delta * GRAVITY
 	velocity = move_and_slide(velocity)
@@ -109,7 +111,7 @@ func fire():
 		bullet.set_projectile_direction(1) # fires projectile to right
 	else:
 		bullet.set_projectile_direction(-1) # fires projectile to left
-	bullet.position = get_global_position()
+	bullet.position = $Position2D2.global_position
 	bullet.player = player
 	get_parent().add_child(bullet)
 	
