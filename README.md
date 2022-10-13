@@ -1,21 +1,24 @@
 # Genre-Mashup
+Name of Game:
+PSC Fight
 
 Goal:
-A 2d sidescroller game that incorporates multiple different genre art styles into the game's mechanics. 
+A 2d sidescroller game(prototype) that incorporates multiple different genre art styles into the game's mechanics using the game engine Godot.
 
 Art:
 Pixel Art[x]
 Cartoon Art[x]
 Stick Art[x]
-Boss Art[]
+Boss Art[x]
 
 Code:
 Boss Ai[]
+UI/HUD []
 Player Movement [x]
-Range Class[]
+Range Class[x]
 Melee Class[x]
 Utility Class[x]
-Art Style Change Menu[]
+Art Style Change Menu[x]
 
 Design:
 Map[]
