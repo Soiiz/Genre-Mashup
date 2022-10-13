@@ -130,7 +130,6 @@ position = Vector2( -23, 0 )
 
 [node name="BossMeleeHit" type="Area2D" parent="Position2D"]
 position = Vector2( 23, 0 )
-scale = Vector2( 1, 1 )
 
 [node name="Weapon" type="CollisionShape2D" parent="Position2D/BossMeleeHit"]
 modulate = Color( 1, 0.866667, 0, 1 )

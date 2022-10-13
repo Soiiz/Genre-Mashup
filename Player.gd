@@ -55,7 +55,7 @@ func state(state):
 				stickAttacking = true
 				$Weapon/CollisionShape2D.disabled = false
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
-				velocity.y = -150
+				velocity.y = -200
 			if health <= 0:
 				queue_free()
 			velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
@@ -87,7 +87,7 @@ func state(state):
 				if cartoonAttacking == false:
 					$CartoonSpriteAnimation.play("idle");
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
-				velocity.y = -150
+				velocity.y = -200
 			if Input.is_action_just_pressed("ui_accept") && cartoonAttacking == false:
 				if is_on_floor():
 					velocity.x = 0
@@ -138,7 +138,7 @@ func state(state):
 					pixelAttacking = true
 					$Weapon/CollisionShape2D.disabled = true
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
-				velocity.y = -150
+				velocity.y = -200
 			if health <= 0:
 				queue_free()
 			velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)

@@ -1,12 +1,19 @@
 extends KinematicBody2D
 
+#TODO:
+# flip hitbox
+# add ranged damage
+# healthbar
+
+onready var BOSSBULLET_SCENE = preload("res://BossBullet.tscn")
+const PROJECTILE = preload("res://BossBullet.tscn")
 
 var player = null
 var in_range = false
 var velocity = Vector2.ZERO
 var stopped = false
-var MAX_SPEED = 40
-var ACCELERATION = 35
+var MAX_SPEED = 20
+var ACCELERATION = 25
 const GRAVITY = 200.0
 export (int) var max_health = 1000
 onready var health = max_health setget _set_health
@@ -29,6 +36,9 @@ var attack_state = RANGE
 
 func _physics_process(delta):
 	$BossAnim.visible = true
+	#if player is not in detection range, but uses ranged attack... aggro onto player
+	if health < max_health and player == null:
+		state = CHASE
 	match state:
 		IDLE:
 			$BossAnim.play("idle")
@@ -93,6 +103,18 @@ func _set_health(value):
 		if health == 0:
 			kill()
 
+func fire():
+	var bullet = BOSSBULLET_SCENE.instance()
+	if player.position.x - self.position.x > 0:
+		bullet.set_projectile_direction(1) # fires projectile to right
+	else:
+		bullet.set_projectile_direction(-1) # fires projectile to left
+	bullet.position = get_global_position()
+	bullet.player = player
+	get_parent().add_child(bullet)
+	
+
+
 
 func _on_MeleeRange_body_entered(body):
 	if (body.name == "Player"):
@@ -121,7 +143,9 @@ func _on_BossAnim_animation_finished():
 			if player != null and player.has_method("boss_melee_hit"): 
 				player.boss_melee_hit()
 	elif currentanimation.get_animation() == "ranged":
-		state = CHASE
+		if player != null:
+			fire()
+			state = CHASE
 
 func _on_Timer_timeout():
 	print("works")
