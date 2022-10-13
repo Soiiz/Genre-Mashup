@@ -1,4 +1,6 @@
 # Genre-Mashup
+Name of Game:
+PSC Fight
 
 Goal:
 A 2d sidescroller game(prototype) that incorporates multiple different genre art styles into the game's mechanics using the game engine Godot.
