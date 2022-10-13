@@ -29,12 +29,13 @@ func _physics_process(delta):
 			print("boss chase")
 		
 			$BossAnim.play("walking")
-			#$PlayerDetectionZone/CollisionShape2D.scale *= 1.5
+			$PlayerDetectionZone/CollisionShape2D.scale *= 1.5
 			if player != null:
 				var direction = (player.global_position - global_position)
 				direction.y = 0
 				direction.normalized()
 				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				print(velocity)
 			else:
 				state = IDLE
 			$BossAnim.flip_h = velocity.x > 0 # flips sprite depending on velocity which depends on player location
@@ -52,7 +53,8 @@ func _on_Timer_timeout():
 	pass # Replace with function body.
 	
 func _on_PlayerDetectionZone_body_entered(body):
-	player = body
+	if (body.name == "Player"):
+		player = body
 	
 func _on_PlayerDetectionZone_body_exited(body):
 	player = null
