@@ -1,8 +1,9 @@
 extends Area2D
 
 func _on_BossMeleeHit_body_entered(body: Node) -> void:
-	if body.has_method("boss_melee_hit") and _on_BossAnim_animation_finished():
-		body.boss_melee_hit()
+	if _on_BossAnim_animation_finished():
+		if body.has_method("boss_melee_hit"): 
+			body.boss_melee_hit()
 		
 
 

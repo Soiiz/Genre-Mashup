@@ -41,7 +41,7 @@ func state(state):
 			if Input.is_action_pressed("ui_right") && stickAttacking == false:
 				$StickSpriteAnimation.play("default")
 				scale.x = scale.y * 1
-				velocity.x = 50
+				velocity.x = 100
 			elif Input.is_action_pressed("ui_left") && stickAttacking == false:
 				$StickSpriteAnimation.play("default")
 				scale.x = scale.y * -1

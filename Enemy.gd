@@ -2,12 +2,22 @@ extends KinematicBody2D
 
 
 var player = null
+var in_range = false
 var velocity = Vector2.ZERO
+var stopped = false
 var MAX_SPEED = 40
-var ACCELERATION = 20
+var ACCELERATION = 35
 const GRAVITY = 200.0
 export (int) var max_health = 1000
 onready var health = max_health setget _set_health
+onready var currentanimation = $BossAnim
+onready var timer = $Timer
+onready var BossMeleeHit = $BossMeleeHit/Weapon
+
+enum {
+	RANGE,
+	MELEE
+}
 
 enum {
 	IDLE,
@@ -15,6 +25,7 @@ enum {
 	CHASE
 }
 var state = IDLE
+var attack_state = RANGE
 
 func _physics_process(delta):
 	$BossAnim.visible = true
@@ -22,39 +33,47 @@ func _physics_process(delta):
 		IDLE:
 			$BossAnim.play("idle")
 			velocity = velocity.move_toward(Vector2.ZERO, 15 * delta)
-			seek_player()
+			#seek_player()
 		ATTACK:
-			velocity = velocity.move_toward(Vector2.ZERO, 35 * delta)
+			velocity = velocity.move_toward(Vector2.ZERO, 60 * delta)
 			if(velocity == Vector2.ZERO):
-				$BossAnim.play("melee")
-				
+				match attack_state:
+					MELEE:
+						$BossAnim.play("melee")
+					RANGE:
+						print("plays range")
+						$BossAnim.play("ranged")
 		CHASE:
+			if timer.time_left > 0:
+				stopped = false
 			$BossAnim.play("walking")
 			$PlayerDetectionZone/CollisionShape2D.scale *= 1.5
 			if player != null:
 				var direction = (player.global_position - global_position)
 				direction.y = 0
 				direction.normalized()
-				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				if stopped == false:
+					velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				else:
+					velocity = velocity.move_toward(Vector2.ZERO, 50 * delta)
 			else:
 				state = IDLE
-			$BossAnim.flip_h = velocity.x > 0 # flips sprite depending on velocity which depends on player location
+			$BossAnim.flip_h = velocity.x >= 0 # flips sprite depending on velocity which depends on player location
+			
 	velocity.y += delta * GRAVITY
 	velocity = move_and_slide(velocity)
 
-func can_see_player():
-	return player != null
+#func can_see_player():
+#	return player != null
 	
-func seek_player():
-	if can_see_player():
-		state = CHASE
-	
-func _on_Timer_timeout():
-	pass # Replace with function body.
+#func seek_player():
+#	if can_see_player():
+#		state = CHASE
 	
 func _on_PlayerDetectionZone_body_entered(body):
 	if (body.name == "Player"):
 		player = body
+		state = CHASE
 
 func melee_hit():
 	_set_health(health - 100)
@@ -78,9 +97,34 @@ func _set_health(value):
 func _on_MeleeRange_body_entered(body):
 	if (body.name == "Player"):
 		state = ATTACK
+		attack_state = MELEE
+		timer.stop()
 
 
 func _on_MeleeRange_body_exited(body):
 	if (body.name == "Player"):
 		state = CHASE
-		
+		timer.start()
+
+
+func _on_BossMeleeHit_body_entered(body):
+	in_range = true
+
+
+func _on_BossMeleeHit_body_exited(body):
+	in_range = false
+
+
+func _on_BossAnim_animation_finished():
+	if currentanimation.get_animation() == "melee":
+		if in_range == true:
+			if player != null and player.has_method("boss_melee_hit"): 
+				player.boss_melee_hit()
+	elif currentanimation.get_animation() == "ranged":
+		state = CHASE
+
+func _on_Timer_timeout():
+	print("works")
+	state = ATTACK
+	attack_state = RANGE
+	
