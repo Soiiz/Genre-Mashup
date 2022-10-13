@@ -4,7 +4,7 @@ extends KinematicBody2D
 var player = null
 var velocity = Vector2.ZERO
 var MAX_SPEED = 40
-var ACCELERATION = 10
+var ACCELERATION = 20
 const GRAVITY = 200.0
 export (int) var max_health = 1000
 onready var health = max_health setget _set_health
@@ -24,10 +24,11 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(Vector2.ZERO, 15 * delta)
 			seek_player()
 		ATTACK:
-			pass
+			velocity = velocity.move_toward(Vector2.ZERO, 35 * delta)
+			if(velocity == Vector2.ZERO):
+				$BossAnim.play("melee")
+				
 		CHASE:
-			print("boss chase")
-		
 			$BossAnim.play("walking")
 			$PlayerDetectionZone/CollisionShape2D.scale *= 1.5
 			if player != null:
@@ -35,7 +36,6 @@ func _physics_process(delta):
 				direction.y = 0
 				direction.normalized()
 				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
-				print(velocity)
 			else:
 				state = IDLE
 			$BossAnim.flip_h = velocity.x > 0 # flips sprite depending on velocity which depends on player location
@@ -55,9 +55,6 @@ func _on_Timer_timeout():
 func _on_PlayerDetectionZone_body_entered(body):
 	if (body.name == "Player"):
 		player = body
-	
-func _on_PlayerDetectionZone_body_exited(body):
-	player = null
 
 func melee_hit():
 	_set_health(health - 100)
@@ -76,3 +73,14 @@ func _set_health(value):
 	if health != prev_health:
 		if health == 0:
 			kill()
+
+
+func _on_MeleeRange_body_entered(body):
+	if (body.name == "Player"):
+		state = ATTACK
+
+
+func _on_MeleeRange_body_exited(body):
+	if (body.name == "Player"):
+		state = CHASE
+		

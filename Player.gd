@@ -162,3 +162,7 @@ func _on_CartoonSpriteAnimation_animation_finished():
 	print(str(health))
 	print(str("pew"))
 	cartoonAttacking = false
+	
+func boss_melee_hit():
+	health -= 20
+	print(health)
