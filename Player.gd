@@ -166,10 +166,10 @@ func _on_CartoonSpriteAnimation_animation_finished():
 	
 func boss_melee_hit():
 	health -= 20
-	$"/root/HpBar".set_percent_value_int(float(health)/max_health * 100)
+	$"../HealthBar"._on_health_updated(health, 20)
 	print(health)
 
 func boss_ranged_hit():
 	health -= 30
-	$"/root/HpBar".set_percent_value_int(float(health)/max_health * 100)
+	$"../HealthBar"._on_health_updated(health, 30)
 	print(health)

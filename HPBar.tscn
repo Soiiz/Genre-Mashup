@@ -3,13 +3,23 @@
 [ext_resource path="res://healthbar-back.png" type="Texture" id=1]
 [ext_resource path="res://healthbar-progress.png" type="Texture" id=2]
 [ext_resource path="res://healthbar-over.png" type="Texture" id=3]
-[ext_resource path="res://HPBar.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends TextureRect
+
+
+func _ready():
+	$HP.value = 100
+
+func set_percent_value_int(value):
+	$HP.value = value
+"
 
 [node name="HPBar" type="TextureRect"]
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 1 )
-script = ExtResource( 4 )
+script = SubResource( 1 )
 
 [node name="HP" type="TextureProgress" parent="."]
 margin_right = 40.0
