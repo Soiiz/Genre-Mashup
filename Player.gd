@@ -16,6 +16,7 @@ var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
 export (int) var health = 100
+var max_health = health
 
 var state = STICK
 
@@ -165,8 +166,10 @@ func _on_CartoonSpriteAnimation_animation_finished():
 	
 func boss_melee_hit():
 	health -= 20
+	$"/root/HpBar".set_percent_value_int(float(health)/max_health * 100)
 	print(health)
 
 func boss_ranged_hit():
 	health -= 30
+	$"/root/HpBar".set_percent_value_int(float(health)/max_health * 100)
 	print(health)

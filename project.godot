@@ -24,6 +24,10 @@ config/name="Prototype Jam1"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+HpBar="*res://HPBar.gd"
+
 [display]
 
 window/size/width=640
