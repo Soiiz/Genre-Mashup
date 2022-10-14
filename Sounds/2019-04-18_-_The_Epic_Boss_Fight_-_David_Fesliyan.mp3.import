@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2019-04-18_-_The_Epic_Boss_Fight_-_David_Fesliyan.mp3-820d71f9dd4e62590d985c0f2a27fded.mp3str"
+
+[deps]
+
+source_file="res://Sounds/2019-04-18_-_The_Epic_Boss_Fight_-_David_Fesliyan.mp3"
+dest_files=[ "res://.import/2019-04-18_-_The_Epic_Boss_Fight_-_David_Fesliyan.mp3-820d71f9dd4e62590d985c0f2a27fded.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

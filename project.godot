@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 HpBar="*res://HPBar.gd"
+BgMusic="*res://BGMusic.tscn"
 
 [display]
 

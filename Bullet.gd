@@ -34,5 +34,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Bullet_body_entered(body):
 	if body.has_method("ranged_hit"):
+		$HitSound.play()
 		body.ranged_hit()
 	queue_free()

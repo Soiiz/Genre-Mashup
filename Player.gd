@@ -15,6 +15,7 @@ const GRAVITY = 35
 var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
+onready var timer = $Timer
 export (int) var health = 90
 var max_health = health
 
@@ -31,7 +32,7 @@ func _physics_process(delta):
 		state = CARTOON
 		print(str("Cartoon"))
 	state(state)
-
+		
 func state(state):
 	match state:
 		STICK:
@@ -41,20 +42,20 @@ func state(state):
 			$CartoonSpriteAnimation.visible = false
 			if Input.is_action_pressed("ui_right") && stickAttacking == false:
 				$StickSpriteAnimation.play("default")
-				$WalkingSound.play()
 				scale.x = scale.y * 1
+
 				velocity.x = 50
 			elif Input.is_action_pressed("ui_left") && stickAttacking == false:
 				$StickSpriteAnimation.play("default")
-				$WalkingSound.play()
+
 				scale.x = scale.y * -1
 				velocity.x = -50
 			else:
 				velocity.x = 0
 				if stickAttacking == false:
-					$WalkingSound.stop()
 					$StickSpriteAnimation.play("Idle")
 			if Input.is_action_pressed("ui_accept"):
+				$SlashSound.play()
 				$StickSpriteAnimation.play("Attacking")
 				stickAttacking = true
 				$Weapon/CollisionShape2D.disabled = false
@@ -186,3 +187,7 @@ func boss_ranged_hit():
 	health -= 30
 	$"../HealthBar"._on_health_updated(health, 30)
 	print(health)
+	
+func _on_Timer_timeout():
+	print("hello")
+	$WalkingSound.play()
