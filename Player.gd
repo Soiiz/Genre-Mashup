@@ -16,9 +16,8 @@ var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
 onready var timer = $Timer
-export (int) var health = 90
 var max_health = health
-
+export (int) var health = 100
 var state = STICK
 
 func _physics_process(delta):
@@ -167,6 +166,7 @@ func _on_PixelSpriteAnimation_animation_finished():
 		$Weapon/CollisionShape2D.disabled = true
 		$PixelSpriteAnimation/HealSound.play()
 		health += 5
+		$"../HealthBar"._on_health_updated(health, 5)
 		print(str(health))
 		print(str("heal"))
 	pixelAttacking = false
