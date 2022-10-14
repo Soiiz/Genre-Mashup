@@ -20,9 +20,9 @@
 [ext_resource path="res://Cartoon character/jump/wizard_jumping_2.png" type="Texture" id=18]
 [ext_resource path="res://Cartoon character/idle/wizard_idle_0.png" type="Texture" id=19]
 [ext_resource path="res://Cartoon character/idle/wizard_idle_1.png" type="Texture" id=20]
+[ext_resource path="res://Sounds/impactBell_heavy_000.ogg" type="AudioStream" id=21]
 [ext_resource path="res://Sounds/Fireball.wav" type="AudioStream" id=22]
 [ext_resource path="res://Sounds/Jump_Sound_Effect.wav" type="AudioStream" id=23]
-[ext_resource path="res://Sounds/Heal.wav" type="AudioStream" id=24]
 [ext_resource path="res://Sounds/impactPlate_heavy_000.ogg" type="AudioStream" id=25]
 [ext_resource path="res://Sounds/knifeSlice.ogg" type="AudioStream" id=26]
 
@@ -291,7 +291,7 @@ animation = "Healing"
 [node name="HealSound" type="AudioStreamPlayer2D" parent="PixelSpriteAnimation"]
 position = Vector2( -11.6757, 2.40102 )
 scale = Vector2( 11.6757, 9.77861 )
-stream = ExtResource( 24 )
+stream = ExtResource( 21 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.5 )
