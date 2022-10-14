@@ -96,6 +96,7 @@ func ranged_hit():
 	print(health)
 
 func kill():
+	get_tree().change_scene("res://Menu.tscn")
 	queue_free()
 	
 func _set_health(value):
