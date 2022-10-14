@@ -8,6 +8,8 @@ extents = Vector2( 5.75, 3.5 )
 
 [node name="BossBullet" type="Area2D"]
 modulate = Color( 1, 0.0196078, 0.0196078, 1 )
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -23,5 +25,5 @@ shape = SubResource( 2 )
 position = Vector2( 0.5, 0.5 )
 scale = Vector2( 0.55, 0.35 )
 
-[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="body_entered" from="." to="." method="_on_BossBullet_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

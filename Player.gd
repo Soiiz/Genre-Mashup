@@ -95,7 +95,7 @@ func state(state):
 					$CartoonSpriteAnimation.play("idle");
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 				$JumpSound.play()
-				velocity.y = -200
+				velocity.y = -225
 			if Input.is_action_just_pressed("ui_accept") && cartoonAttacking == false:
 				if is_on_floor():
 					velocity.x = 0
