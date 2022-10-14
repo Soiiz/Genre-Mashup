@@ -29,6 +29,7 @@ Map/Sounds assets used from Kenney.nl (https://kenney.nl/)
 Music asset used from David Fesliyan (https://www.fesliyanstudios.com/royalty-free-music/download/the-epic-boss-fight/316)
 Fireball used from Sound Library (https://www.youtube.com/watch?v=LAD2Wxgc7Uo)
 Jump used from Jack Agutter (https://www.youtube.com/watch?v=QZqJy_j4S-8)
+Background art asset from TexMexxx (https://www.reddit.com/r/PixelArt/comments/7wdjye/occc_parallax_background_for_my_dungeon/)
 
 Credit:
 Kenny Chau - Player Systems/Mechanics
