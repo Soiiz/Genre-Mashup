@@ -15,15 +15,9 @@ const GRAVITY = 35
 var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
-<<<<<<< HEAD
 onready var timer = $Timer
 var max_health = health
 export (int) var health = 100
-=======
-export (int) var health = 100
-
-
->>>>>>> 883f16dd7024da063e4ffc4a2b725834bffb5528
 var state = STICK
 
 func _physics_process(delta):
