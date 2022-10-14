@@ -18,6 +18,7 @@ onready var weapon = $Weapon
 onready var timer = $Timer
 var max_health = health
 export (int) var health = 100
+
 var state = STICK
 
 func _physics_process(delta):
