@@ -58,6 +58,7 @@ func state(state):
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 				velocity.y = -200
 			if health <= 0:
+				get_tree().change_scene("res://Death.tscn")
 				queue_free()
 			velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 		CARTOON:
@@ -113,6 +114,7 @@ func state(state):
 					else:
 						$CartoonSpriteAnimation.stop()
 			if health <= 0:
+				get_tree().change_scene("res://Death.tscn")
 				queue_free()
 			velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 			velocity.x = lerp(velocity.x,0,0.1)
@@ -141,6 +143,7 @@ func state(state):
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 				velocity.y = -200
 			if health <= 0:
+				get_tree().change_scene("res://Death.tscn")
 				queue_free()
 			velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
  
