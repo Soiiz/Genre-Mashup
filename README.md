@@ -12,8 +12,8 @@ Stick Art[x]
 Boss Art[x]
 
 Code:
-Boss Ai[]
-UI/HUD []
+Boss Ai[x]
+UI/HUD [x]
 Player Movement [x]
 Range Class[x]
 Melee Class[x]
@@ -21,11 +21,14 @@ Utility Class[x]
 Art Style Change Menu[x]
 
 Design:
-Map[]
-Sound[]
+Map[x]
+Sound[x]
 Background[]
 
-Map assets used from Kenney.nl (https://kenney.nl/)
+Map/Sounds assets used from Kenney.nl (https://kenney.nl/)
+Music asset used from David Fesliyan (https://www.fesliyanstudios.com/royalty-free-music/download/the-epic-boss-fight/316)
+Fireball used from Sound Library (https://www.youtube.com/watch?v=LAD2Wxgc7Uo)
+Jump used from Jack Agutter (https://www.youtube.com/watch?v=QZqJy_j4S-8)
 
 Credit:
 Kenny Chau - Player Systems/Mechanics
