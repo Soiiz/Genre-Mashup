@@ -19,6 +19,7 @@ onready var health = max_health setget _set_health
 onready var currentanimation = $BossAnim
 onready var timer = $Timer
 onready var BossMeleeHit = $BossMeleeHit/Weapon
+export (int) var hp  = 100
 
 enum {
 	RANGE,
@@ -89,10 +90,14 @@ func _on_PlayerDetectionZone_body_entered(body):
 
 func melee_hit():
 	_set_health(health - 100)
+	hp = hp - 10
+	$EnemyHP._on_health_updated(hp, 10)
 	print(health)
 	
 func ranged_hit():
 	_set_health(health - 50)
+	hp = hp - 5
+	$EnemyHP._on_health_updated(hp, 5)
 	print(health)
 
 func kill():
