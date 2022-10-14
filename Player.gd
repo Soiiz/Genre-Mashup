@@ -15,13 +15,7 @@ const GRAVITY = 35
 var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
-
-onready var timer = $Timer
-var max_health = health
 export (int) var health = 100
-
-export (int) var health = 100
-
 
 
 var state = STICK
