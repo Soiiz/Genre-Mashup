@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://spritesheet_1-removebg-preview.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -20,6 +20,11 @@
 [ext_resource path="res://Cartoon character/jump/wizard_jumping_2.png" type="Texture" id=18]
 [ext_resource path="res://Cartoon character/idle/wizard_idle_0.png" type="Texture" id=19]
 [ext_resource path="res://Cartoon character/idle/wizard_idle_1.png" type="Texture" id=20]
+[ext_resource path="res://Sounds/footstep_wood_004.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Sounds/Fireball.wav" type="AudioStream" id=22]
+[ext_resource path="res://Sounds/Jump_Sound_Effect.wav" type="AudioStream" id=23]
+[ext_resource path="res://Sounds/Heal.wav" type="AudioStream" id=24]
+[ext_resource path="res://Sounds/impactPlate_heavy_000.ogg" type="AudioStream" id=25]
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
@@ -250,12 +255,23 @@ extents = Vector2( 4.43703, 6.69333 )
 collision_layer = 3
 script = ExtResource( 2 )
 
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 23 )
+
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 21 )
+
 [node name="CartoonSpriteAnimation" type="AnimatedSprite" parent="."]
 position = Vector2( 0.562502, -1.25 )
 scale = Vector2( 0.07625, 0.07625 )
 z_index = 1
 frames = SubResource( 31 )
 animation = "jump"
+
+[node name="RangeSound" type="AudioStreamPlayer2D" parent="CartoonSpriteAnimation"]
+position = Vector2( -7.37708, 16.3934 )
+scale = Vector2( 13.1148, 13.1148 )
+stream = ExtResource( 22 )
 
 [node name="StickSpriteAnimation" type="AnimatedSprite" parent="."]
 position = Vector2( -0.499999, -1 )
@@ -270,6 +286,11 @@ scale = Vector2( 0.0856481, 0.102264 )
 z_index = 1
 frames = SubResource( 12 )
 animation = "Healing"
+
+[node name="HealSound" type="AudioStreamPlayer2D" parent="PixelSpriteAnimation"]
+position = Vector2( -11.6757, 2.40102 )
+scale = Vector2( 11.6757, 9.77861 )
+stream = ExtResource( 24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.5 )
@@ -287,6 +308,9 @@ script = ExtResource( 4 )
 position = Vector2( 14.3595, 0.198388 )
 shape = SubResource( 17 )
 disabled = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Weapon"]
+stream = ExtResource( 25 )
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 

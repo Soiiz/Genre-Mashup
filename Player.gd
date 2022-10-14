@@ -15,7 +15,7 @@ const GRAVITY = 35
 var onGround = false
 onready var position2D = $Position2D
 onready var weapon = $Weapon
-export (int) var health = 100
+export (int) var health = 90
 var max_health = health
 
 var state = STICK
@@ -41,21 +41,25 @@ func state(state):
 			$CartoonSpriteAnimation.visible = false
 			if Input.is_action_pressed("ui_right") && stickAttacking == false:
 				$StickSpriteAnimation.play("default")
+				$WalkingSound.play()
 				scale.x = scale.y * 1
-				velocity.x = 100
+				velocity.x = 50
 			elif Input.is_action_pressed("ui_left") && stickAttacking == false:
 				$StickSpriteAnimation.play("default")
+				$WalkingSound.play()
 				scale.x = scale.y * -1
 				velocity.x = -50
 			else:
 				velocity.x = 0
 				if stickAttacking == false:
+					$WalkingSound.stop()
 					$StickSpriteAnimation.play("Idle")
 			if Input.is_action_pressed("ui_accept"):
 				$StickSpriteAnimation.play("Attacking")
 				stickAttacking = true
 				$Weapon/CollisionShape2D.disabled = false
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+				$JumpSound.play()
 				velocity.y = -200
 			if health <= 0:
 				queue_free()
@@ -78,6 +82,7 @@ func state(state):
 				velocity.x = -50
 				if is_on_floor() == false:
 					$CartoonSpriteAnimation.play("jump")
+					$JumpSound.play()
 				else:
 					$CartoonSpriteAnimation.play("walk");
 					scale.x = scale.y * -1
@@ -88,6 +93,7 @@ func state(state):
 				if cartoonAttacking == false:
 					$CartoonSpriteAnimation.play("idle");
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+				$JumpSound.play()
 				velocity.y = -200
 			if Input.is_action_just_pressed("ui_accept") && cartoonAttacking == false:
 				if is_on_floor():
@@ -139,6 +145,7 @@ func state(state):
 					pixelAttacking = true
 					$Weapon/CollisionShape2D.disabled = true
 			if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+				$JumpSound.play()
 				velocity.y = -200
 			if health <= 0:
 				queue_free()
@@ -154,15 +161,18 @@ func _on_StickSpriteAnimation_animation_finished():
 func _on_PixelSpriteAnimation_animation_finished():
 	if $PixelSpriteAnimation.animation == "Healing":
 		$Weapon/CollisionShape2D.disabled = true
+		$PixelSpriteAnimation/HealSound.play()
 		health += 5
 		print(str(health))
 		print(str("heal"))
 	pixelAttacking = false
 
 func _on_CartoonSpriteAnimation_animation_finished():
-	print(str(health))
-	print(str("pew"))
-	cartoonAttacking = false
+	if $CartoonSpriteAnimation.animation == "rangeAttack":
+		print(str(health))
+		print(str("pew"))
+		$CartoonSpriteAnimation/RangeSound.play()
+		cartoonAttacking = false
 	
 func boss_melee_hit():
 	health -= 20
